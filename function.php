@@ -1,5 +1,45 @@
 <?php
 
+
+add_action('wp_head','hook_script');
+add_action( 'admin_head', 'hook_script' );
+
+function hook_script()
+{
+
+    $output='<script>
+          jQuery(function() {
+            jQuery( ".datepicker" ).datepicker({
+                dateFormat: "dd.mm.yy"
+            });
+            jQuery( "#ten_from_date_tournament" ).datepicker({
+                dateFormat: "dd.mm.yy"
+            });
+            jQuery( "#ten_to_date_tournament" ).datepicker({
+                dateFormat: "dd.mm.yy"
+            });
+          });
+      </script>';
+
+    echo $output;
+
+}
+
+
+function load_custom_wp_admin_style() {
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-tabs');
+        wp_enqueue_script('jquery-ui-datepicker');
+        wp_enqueue_style('plugin_name-admin-ui-css',
+                'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/smoothness/jquery-ui.css',
+                false,
+                PLUGIN_VERSION,
+                false);
+}
+add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+
+
+
 if (!function_exists('admin_register_assets')) {
 
     function admin_register_assets() {
@@ -43,6 +83,12 @@ function front_enqueue_scripts() {
         // wp_enqueue_style(TENNIS_OPT_PREFIX . 'fotorama', $dir . '/assets/fotorama/fotorama.css', array(), NULL);
         wp_enqueue_style(TENNIS_OPT_PREFIX . 'jquery-ui', $dir . '/css/jquery-ui.css', array(), NULL);
         wp_enqueue_style(TENNIS_OPT_PREFIX . 'style', get_stylesheet_uri(), array(), NULL);
+
+        wp_enqueue_style('plugin_name-admin-ui-css',
+                'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/smoothness/jquery-ui.css',
+                false,
+                PLUGIN_VERSION,
+                false);
         if ($is_IE) {
             wp_register_style('tennis-ie', $dir . '/css/ie.css', array(), NULL);
             wp_enqueue_style('tennis-ie');
@@ -53,6 +99,7 @@ function front_enqueue_scripts() {
         #SCRIPTS
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-ui-tabs');
+        wp_enqueue_script('jquery-ui-datepicker');
         
         if ($is_IE) {
             wp_enqueue_script(TENNIS_OPT_PREFIX . 'html5shiv', $dir . '/js/html5shiv.js', array(), NULL, TRUE);
@@ -222,10 +269,27 @@ if( isset($_POST['submit_post']) && !empty( $_POST['action'] ) &&  $_POST['actio
         add_filter( 'wp_mail_content_type', 'set_html_content_type' );
             if (!wp_mail( $toID, 'A New Tournament Post Submitted', $message, $headers )){
                 remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
-                //header("Location: $redirect");
+
+                $pos = strpos($_POST['_wp_http_referer'], '?');
+
+                if($pos === false){
+                    $redirect = $_POST['_wp_http_referer']."?msg=success";
+                    wp_redirect($redirect); exit;
+                }else{
+                    $redirect = $_POST['_wp_http_referer']."&msg=success";
+                    wp_redirect($redirect); exit;
+                }
+                
             } else {
                 remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
-                //header("Location: $redirect"."?msg=Success");
+                
+                if($pos === false){
+                    $redirect = $_POST['_wp_http_referer']."?msg=success";
+                    wp_redirect($redirect); exit;
+                }else{
+                    $redirect = $_POST['_wp_http_referer']."&msg=success";
+                    wp_redirect($redirect); exit;
+                }
             }
 
     endif;
@@ -263,14 +327,14 @@ function tournament_filter($content) {
         if (!empty($ten_from_date_tournament)) {
 
             $from = $ten_from_date_tournament;
-            $content .= '<div class="terms-box clearfix">Tournament Start From :-'.$from.'</div>';
+            $content .= '<div class="terms-box clearfix">Tournament Start From :- <span>'.$from.'</span></div>';
         }
 
 
         if (!empty($ten_to_date_tournament)) {
 
             $to = $ten_to_date_tournament;
-            $content .= '<div class="terms-box clearfix">Tournament End'.$to.'</div>';
+            $content .= '<div class="terms-box clearfix">Tournament End <span>'.$to.'</span></div>';
             
         }
 

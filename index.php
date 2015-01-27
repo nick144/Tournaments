@@ -67,4 +67,4 @@ foreach ($tennisDirs as $directory) {
 
 
 new WPS_Tournament_Framewrok();
-//admin_register_assets();
+admin_register_assets();
