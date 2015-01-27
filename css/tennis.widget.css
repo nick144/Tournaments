@@ -1,0 +1,31 @@
+.tennis-widget-wrap{
+    margin-top: 10px;
+}
+
+.tennis-widget-control-wrap{
+    margin: 0px;
+    padding-bottom: 15px;
+}
+
+.tennis-widget-control-wrap label.tennis-ui-label{
+    display: inline-block;
+    margin-bottom: 5px;    
+}
+
+.tennis-widget-control-wrap label.tennis-ui-label.tennis-ui-checkbox-label{
+    width: auto !important;
+}
+
+.tennis-widget-control-wrap input[type=text],
+.tennis-widget-control-wrap input[type=email],
+.tennis-widget-control-wrap input[type=number],
+.tennis-widget-control-wrap input[type=url],
+.tennis-widget-control-wrap select,
+.tennis-widget-control-wrap textarea{
+    width: 100%;
+}
+
+div.widget-made-by-tennis{    
+    background: url('../images/logo.png') no-repeat 7px center transparent;
+    text-indent: 15px;
+}
