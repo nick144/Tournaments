@@ -74,7 +74,7 @@ class WPS_Tournament_Framewrok
 
     function show_tournaments() 
 	{	
-		
+
 		if(isset($_GET['msg']) && $_GET['msg'] == 'success'){
 
 			?>
@@ -155,12 +155,12 @@ class WPS_Tournament_Framewrok
 			                
 			                <p class="input-block">
 			                    <label for="contact_name" class="required">Name</label>
-			                    <input type="text" placeholder="" class="" id="contact_name" name="contact_name" data-bvalidator="required" />
+			                    <input type="text" placeholder="" class="" id="contact_name" name="ten_contact_name" data-bvalidator="required" />
 			                </p>
 							
 							<p class="input-block">
 			                    <label for="contact_email" class="required">Email (<span>required</span>)</label>
-			                    <input type="text" placeholder="" class="" id="contact_email" name="contact_email" data-bvalidator="email,required" />
+			                    <input type="text" placeholder="" class="" id="contact_email" name="ten_contact_email" data-bvalidator="email,required" />
 			                </p>
 
 			                <p class="textarea-block">

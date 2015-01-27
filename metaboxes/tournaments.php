@@ -69,6 +69,24 @@ $metaboxes['fields'] = array(
         'is_append_label_before_control' => false,
         'help' => NULL,
     ),
+    array(
+        'type' => 'text',
+        'id' => TENNIS_OPT_PREFIX . 'contact_name',
+        'name' => TENNIS_OPT_PREFIX . 'contact_name',
+        'default' => false,
+        'label' => __('Contact Name', tennis_get_domain()),
+        'is_append_label_before_control' => false,
+        'help' => NULL,
+    ),
+    array(
+        'type' => 'text',
+        'id' => TENNIS_OPT_PREFIX . 'contact_email',
+        'name' => TENNIS_OPT_PREFIX . 'contact_email',
+        'default' => false,
+        'label' => __('Contact Email', tennis_get_domain()),
+        'is_append_label_before_control' => false,
+        'help' => NULL,
+    ),
 );
 
 $post->add_meta_box(__('Tournaments Details', tennis_get_domain()), 'tennis-metabox-post-layout-manage', $metaboxes);
