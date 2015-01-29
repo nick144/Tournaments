@@ -32,6 +32,16 @@ $metaboxes['fields'] = array(
     ),
     array(
         'type' => 'text',
+        'id' => TENNIS_OPT_PREFIX . 'location',
+        'name' => TENNIS_OPT_PREFIX . 'location',
+        'default' => false,
+        'label' => __('Location', tennis_get_domain()),
+        'is_append_label_before_control' => false,
+        'help' => NULL,
+        
+    ),
+    array(
+        'type' => 'text',
         'id' => TENNIS_OPT_PREFIX . 'to_date_tournament',
         'class' => 'datepicker',
         'name' => TENNIS_OPT_PREFIX . 'to_date_tournament',
@@ -62,15 +72,6 @@ $metaboxes['fields'] = array(
     ),
     array(
         'type' => 'text',
-        'id' => TENNIS_OPT_PREFIX . 'organizer_email',
-        'name' => TENNIS_OPT_PREFIX . 'organizer_email',
-        'default' => false,
-        'label' => __('Organizer Email', tennis_get_domain()),
-        'is_append_label_before_control' => false,
-        'help' => NULL,
-    ),
-    array(
-        'type' => 'text',
         'id' => TENNIS_OPT_PREFIX . 'contact_name',
         'name' => TENNIS_OPT_PREFIX . 'contact_name',
         'default' => false,
@@ -84,6 +85,16 @@ $metaboxes['fields'] = array(
         'name' => TENNIS_OPT_PREFIX . 'contact_email',
         'default' => false,
         'label' => __('Contact Email', tennis_get_domain()),
+        'is_append_label_before_control' => false,
+        'help' => NULL,
+    ),
+
+    array(
+        'type' => 'text',
+        'id' => TENNIS_OPT_PREFIX . 'contact_number',
+        'name' => TENNIS_OPT_PREFIX . 'contact_number',
+        'default' => false,
+        'label' => __('Contact Number', tennis_get_domain()),
         'is_append_label_before_control' => false,
         'help' => NULL,
     ),

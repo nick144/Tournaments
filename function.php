@@ -223,11 +223,11 @@ if( isset($_POST['submit_post']) && !empty( $_POST['action'] ) &&  $_POST['actio
 
         }
 
-        if (isset($_POST['ten_organizer_email'])) {
+        if (isset($_POST['ten_contact_number'])) {
             
-            $organizer_email = $_POST['ten_organizer_email'];
+            $ten_contact_number = $_POST['ten_contact_number'];
 
-            add_post_meta( $post_id, 'ten_organizer_email', $organizer_email);
+            add_post_meta( $post_id, 'ten_contact_number', $ten_contact_number);
 
         }
 

@@ -112,7 +112,8 @@ class WPS_Tournament_Framewrok
 							
 							<p class="input-block">
 			                    <label class="required">Location (<span>required</span>)</label>
-			                    <?php wp_dropdown_categories( 'tab_index=10&taxonomy=tournament-location&hide_empty=0' ); ?>
+			                    <input type="text" placeholder="" id="ten_location" name="ten_location" data-bvalidator="required" />
+			                    <?php //wp_dropdown_categories( 'tab_index=10&taxonomy=tournament-location&hide_empty=0' ); ?>
 			                </p>
 							
 							
@@ -147,15 +148,17 @@ class WPS_Tournament_Framewrok
 			                    <input type="text" placeholder="" class="" id="ten_organizer_name" name="ten_organizer_name" data-bvalidator="required" />
 			                </p>
 
-			                <p class="input-block">
-			                    <label for="ten_organizer_email" class="required">Organizer Email (<span>required</span>)</label>
-			                    <input type="text" placeholder="" class="" id="ten_organizer_email" name="ten_organizer_email" data-bvalidator="email,required" />
-			                </p>
+			                
 							
 			                
 			                <p class="input-block">
 			                    <label for="contact_name" class="required">Name</label>
 			                    <input type="text" placeholder="" class="" id="contact_name" name="ten_contact_name" data-bvalidator="required" />
+			                </p>
+
+			                <p class="input-block">
+			                    <label for="ten_contact_number" class="required">Contact Number (<span>required</span>)</label>
+			                    <input type="text" placeholder="" class="" id="ten_contact_number" name="ten_contact_number" data-bvalidator="email,required" />
 			                </p>
 							
 							<p class="input-block">
@@ -193,20 +196,80 @@ class WPS_Tournament_Framewrok
     	extract( shortcode_atts( array(
 		  	'post_type' 		=> 'tournament',
 			'posts_per_page' 	=> 10,
-			'post_parent' 		=> 1,
-			'category_name' 	=> '',
-			'offset' 			=>  0
+			'order' 			=> 'ASC',
+			'orderby' 			=> 'title'
 		), $atts ) );
 
-    	$args = array(
-  			'post_type' 		=> $post_type,
-  			'posts_per_page' 	=> $posts_per_page,
-		);
+    	
+    	ob_start();
 
-    	query_posts( $args );
+    	
+
+	    $query = new WP_Query( array(
+	        'post_type' 		=> $post_type,
+	        'posts_per_page' 	=> $posts_per_page,
+	        'order' 			=> $order,
+	        'orderby' 			=> $orderby,
+	    ) );
+
+	    if ( $query->have_posts() ) { ?>
+
+    	<div class="page type-page status-publish hentry entry-box clearfix col-lg-12">
+    
+		<h6 class="elements-title">Tournaments</h6>
+
+		<div class="row clearfix">
+	        <div class="col-sm-3">
+	            <h3 class="elements-title">Tournament Name</h3>
+	        </div>
+	        <div class="col-sm-3">
+	            <h3 class="elements-title">From Date of Tournament</h3>
+	        </div>
+	        <div class="col-sm-3">
+	            <h3 class="elements-title">To Date of Tournament</h3>
+	        </div>
+	        <div class="col-sm-3">
+	            <h3 class="elements-title">Location</h3>
+	        </div>
+	    </div>
+
+    	<?php while ( $query->have_posts() ) : $query->the_post(); 
+
+	            		$postid = get_the_ID();
+
+	            		$start_date 	= get_post_meta($postid, 'ten_from_date_tournament', true );
+	            		$end_date 		= get_post_meta($postid, 'ten_to_date_tournament', true );
+	            		$location 		= get_post_meta($postid, 'ten_to_date_tournament', true );
+	            ?>
+
+	            <div id="post-<?php the_ID(); ?>" class="row clearfix">
+			        <div class="col-sm-3">
+			            <h6 class="elements-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
+			        </div>
+			        <div class="col-sm-3">
+			            <h6 class="elements-title"><a href="<?php the_permalink(); ?>"><?php echo $start_date; ?></a></h6>
+			        </div>
+			        <div class="col-sm-3">
+			            <h6 class="elements-title"><a href="<?php the_permalink(); ?>"><?php echo $end_date; ?></a></h6>
+			        </div>
+			        <div class="col-sm-3">
+			            <h6 class="elements-title"><a href="<?php the_permalink(); ?>"><?php echo $location; ?></a></h6>
+			        </div>
+			    </div>
+	            
+	            <?php endwhile;
+	            wp_reset_postdata(); ?>
+	        </ul>
+	    <?php $myvariable = ob_get_clean();
+	    ?>
+
+		</div>
+
+	    <?php
+	    return $myvariable;
+	    }
 
     }
-	
 	
 }
 
