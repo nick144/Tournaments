@@ -35,7 +35,7 @@ class WPS_Tournament_Framewrok
 		'labels' => $labels,
 		'public' => true,
 		'has_archive' => false,
-		'menu_icon' => plugin_dir_path( __FILE__ ) . '/images/posttype/trophy.png',
+		'menu_icon' => plugins_url() . '/Tournaments/images/posttype/trophy.png',
 		'rewrite' => array( 'slug' => 'tournament' ),
 		'supports' => array('title', 'thumbnail','editor')
 	) );
