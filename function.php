@@ -1,6 +1,22 @@
 <?php
 
 
+if ( !is_admin() ) {
+    function sorttablepost_enqueue_scripts() { 
+        wp_enqueue_script( 'sorttable', plugins_url( '/scripts/sorttable.js', __FILE__ ) );
+    } 
+    add_action('wp_enqueue_scripts', 'sorttablepost_enqueue_scripts'); 
+    
+    function sorttablepost_enqueue_styles() {
+        $myStyleUrl = plugins_url('/css/sorttablepost.css', __FILE__);
+        wp_register_style('sorttablepost', $myStyleUrl);
+        wp_enqueue_style( 'sorttablepost');
+    }
+    add_action('wp_print_styles', 'sorttablepost_enqueue_styles');
+}
+
+
+
 add_action('wp_head','hook_script');
 add_action( 'admin_head', 'hook_script' );
 
@@ -196,6 +212,15 @@ if( isset($_POST['submit_post']) && !empty( $_POST['action'] ) &&  $_POST['actio
             $from = $_POST['ten_from_date_tournament'];
 
             add_post_meta( $post_id, 'ten_from_date_tournament', $from);
+
+        }
+
+
+        if (isset($_POST['ten_location'])) {
+            
+            $from = $_POST['ten_location'];
+
+            add_post_meta( $post_id, 'ten_location', $from);
 
         }
 

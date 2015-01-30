@@ -179,7 +179,7 @@ class WPS_Tournament_Framewrok
 			        <p class="contact-button">
 			            <input type="hidden" name="action" value="new_post" />
 						<?php wp_nonce_field( 'new-post' ); ?>
-			            <input type="submit" name="submit_post" id="submit" class="btn" value="Submit Post">
+			            <input type="submit" name="submit_post" id="submit" class="btn" value="Add Tournament">
 			        </p>
 			    </form>
 			</div>
@@ -214,24 +214,21 @@ class WPS_Tournament_Framewrok
 
 	    if ( $query->have_posts() ) { ?>
 
-    	<div class="page type-page status-publish hentry entry-box clearfix col-lg-12">
+    	<div class="page type-page status-publish hentry entry-box clearfix">
     
 		<h6 class="elements-title">Tournaments</h6>
 
-		<div class="row clearfix">
-	        <div class="col-sm-3">
-	            <h3 class="elements-title">Tournament Name</h3>
-	        </div>
-	        <div class="col-sm-3">
-	            <h3 class="elements-title">From Date of Tournament</h3>
-	        </div>
-	        <div class="col-sm-3">
-	            <h3 class="elements-title">To Date of Tournament</h3>
-	        </div>
-	        <div class="col-sm-3">
-	            <h3 class="elements-title">Location</h3>
-	        </div>
-	    </div>
+		<table class="sortable">
+
+			<tr>
+				<th>Tournament Name</th>
+				<th>From Date of Tournament</th>
+				<th>To Date of Tournament</th>
+				<th>Location</th>
+				<th class="sorttable_nosort"></th>
+			</tr>
+
+		
 
     	<?php while ( $query->have_posts() ) : $query->the_post(); 
 
@@ -241,25 +238,17 @@ class WPS_Tournament_Framewrok
 	            		$end_date 		= get_post_meta($postid, 'ten_to_date_tournament', true );
 	            		$location 		= get_post_meta($postid, 'ten_to_date_tournament', true );
 	            ?>
-
-	            <div id="post-<?php the_ID(); ?>" class="row clearfix">
-			        <div class="col-sm-3">
-			            <h6 class="elements-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
-			        </div>
-			        <div class="col-sm-3">
-			            <h6 class="elements-title"><a href="<?php the_permalink(); ?>"><?php echo $start_date; ?></a></h6>
-			        </div>
-			        <div class="col-sm-3">
-			            <h6 class="elements-title"><a href="<?php the_permalink(); ?>"><?php echo $end_date; ?></a></h6>
-			        </div>
-			        <div class="col-sm-3">
-			            <h6 class="elements-title"><a href="<?php the_permalink(); ?>"><?php echo $location; ?></a></h6>
-			        </div>
-			    </div>
+	            <tr>
+	            	<td><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></td>
+	            	<td><?php echo $start_date; ?></td>
+	            	<td><?php echo $end_date; ?></a></td>
+	            	<td><?php echo $location; ?></a></td>
+	            	<td><a href="<?php the_permalink(); ?>">Details</a></td>
+	            </tr>
 	            
 	            <?php endwhile;
 	            wp_reset_postdata(); ?>
-	        </ul>
+	        </table>
 	    <?php $myvariable = ob_get_clean();
 	    ?>
 
