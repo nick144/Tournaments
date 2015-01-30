@@ -295,7 +295,7 @@ if( isset($_POST['submit_post']) && !empty( $_POST['action'] ) &&  $_POST['actio
             if (!wp_mail( $toID, 'A New Tournament Post Submitted', $message, $headers )){
                 remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 
-                $pos = strpos($_POST['_wp_http_referer'], '?');
+                /*$pos = strpos($_POST['_wp_http_referer'], '?');
 
                 if($pos === false){
                     $redirect = $_POST['_wp_http_referer']."?msg=success";
@@ -303,18 +303,13 @@ if( isset($_POST['submit_post']) && !empty( $_POST['action'] ) &&  $_POST['actio
                 }else{
                     $redirect = $_POST['_wp_http_referer']."&msg=success";
                     wp_redirect($redirect); exit;
-                }
+                }*/
                 
             } else {
                 remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
                 
-                if($pos === false){
-                    $redirect = $_POST['_wp_http_referer']."?msg=success";
-                    wp_redirect($redirect); exit;
-                }else{
-                    $redirect = $_POST['_wp_http_referer']."&msg=success";
-                    wp_redirect($redirect); exit;
-                }
+                $redirect = $_POST['_wp_http_referer']."?msg=success";
+                wp_redirect($redirect); exit;
             }
 
     endif;
