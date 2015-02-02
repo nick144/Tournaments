@@ -236,7 +236,7 @@ class WPS_Tournament_Framewrok
 
 	            		$start_date 	= get_post_meta($postid, 'ten_from_date_tournament', true );
 	            		$end_date 		= get_post_meta($postid, 'ten_to_date_tournament', true );
-	            		$location 		= get_post_meta($postid, 'ten_to_date_tournament', true );
+	            		$location 		= get_post_meta($postid, 'ten_location', true );
 	            ?>
 	            <tr>
 	            	<td><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></td>

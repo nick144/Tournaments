@@ -30,3 +30,15 @@ table.sortable th:hover:not(.sorttable_nosort) {
 .sorttable_nosort {
 	cursor: default;
 }
+
+/*****  Custom Css *****/
+
+.terms-box span {
+	width: 45%;
+	float: left;
+}
+
+
+.terms-box.clearfix {
+	padding: 5px;
+}

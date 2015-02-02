@@ -347,28 +347,28 @@ function tournament_filter($content) {
         if (!empty($ten_from_date_tournament)) {
 
             $from = $ten_from_date_tournament;
-            $content .= '<div class="terms-box clearfix">Tournament Start From :- <span>'.$from.'</span></div>';
+            $content .= '<div class="terms-box clearfix"><span>Tournament Start From </span><span>:- '.$from.'</span></div>';
         }
 
 
         if (!empty($ten_to_date_tournament)) {
 
             $to = $ten_to_date_tournament;
-            $content .= '<div class="terms-box clearfix">Tournament End <span>'.$to.'</span></div>';
+            $content .= '<div class="terms-box clearfix"><span>Tournament End </span><span>:- '.$to.'</span></div>';
             
         }
 
         if (!empty($ten_organizer_name)) {
 
             $organizer = $ten_organizer_name;
-            $content .= '<div class="terms-box clearfix">Organizer Name'.$organizer.'</div>';
+            $content .= '<div class="terms-box clearfix"><span>Organizer Name </span><span>:- '.$organizer.'</span></div>';
 
         }
 
         if (!empty($ten_ground_name)) {
 
             $ground = $ten_ground_name;
-            $content .= '<div class="terms-box clearfix">Ground Name'.$ground.'</div>';
+            $content .= '<div class="terms-box clearfix"><span>Ground Name</span><span>:- '.$ground.'</span></div>';
 
         }
 
@@ -377,7 +377,7 @@ function tournament_filter($content) {
         if (!empty($ten_organizer_email)) {
 
             $organizer_email = $ten_organizer_email;
-            $content .= '<div class="terms-box clearfix">Organizer Email'.$organizer_email.'</div>';
+            $content .= '<div class="terms-box clearfix"><span>Organizer Email </span><span>:- '.$organizer_email.'</span></div>';
             
 
         }
