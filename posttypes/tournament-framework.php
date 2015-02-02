@@ -158,7 +158,7 @@ class WPS_Tournament_Framewrok
 
 			                <p class="input-block">
 			                    <label for="ten_contact_number" class="required">Contact Number (<span>required</span>)</label>
-			                    <input type="text" placeholder="" class="" id="ten_contact_number" name="ten_contact_number" data-bvalidator="email,required" />
+			                    <input type="text" placeholder="" class="" id="ten_contact_number" name="ten_contact_number" data-bvalidator="required" />
 			                </p>
 							
 							<p class="input-block">

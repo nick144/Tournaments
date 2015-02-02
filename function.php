@@ -330,6 +330,8 @@ function set_html_content_type() {
 
 function tournament_filter($content) {
   
+  
+
   $posts = $GLOBALS['post'];
 
   $post_id = $posts->ID;
@@ -342,7 +344,7 @@ function tournament_filter($content) {
         $ten_to_date_tournament     = get_post_meta( $post_id, 'ten_to_date_tournament', true);
         $ten_ground_name            = get_post_meta( $post_id, 'ten_ground_name', true);
         $ten_organizer_name         = get_post_meta( $post_id, 'ten_organizer_name', true);
-        $content                    = ''; 
+        
 
         if (!empty($ten_from_date_tournament)) {
 
@@ -383,6 +385,7 @@ function tournament_filter($content) {
         }
     }
  
+
   // otherwise returns the database content
   return $content;
 }
